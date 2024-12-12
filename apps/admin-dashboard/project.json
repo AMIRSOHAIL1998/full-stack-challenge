@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "projects": {
+    "admin-dashboard": {
+      "root": "apps/admin-dashboard",
+      "sourceRoot": "apps/admin-dashboard/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/react:build",
+          "options": {
+            "outputPath": "dist/apps/admin-dashboard"
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/react:dev-server",
+          "options": {
+            "buildTarget": "admin-dashboard:build"
+          }
+        }
+      }
+    }
+  }
+}

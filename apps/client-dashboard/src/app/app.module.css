@@ -1,0 +1,20 @@
+/* Your styles goes here. */
+/* Your styles goes here. */
+:root {
+  --background: #ffffff;
+  --color: #000000;
+  --primary: #1a73e8;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--color);
+}
+
+button {
+  background-color: var(--primary);
+  color: var(--background);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}

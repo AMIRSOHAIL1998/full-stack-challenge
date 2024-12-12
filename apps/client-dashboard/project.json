@@ -1,0 +1,23 @@
+{
+  "projects": {
+    "client-dashboard": {
+      "root": "apps/client-dashboard",
+      "sourceRoot": "apps/client-dashboard/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/react:build",
+          "options": {
+            "outputPath": "dist/apps/client-dashboard"
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/react:dev-server",
+          "options": {
+            "buildTarget": "client-dashboard:build"
+          }
+        }
+      }
+    }
+  }
+}
