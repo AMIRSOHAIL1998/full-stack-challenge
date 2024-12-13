@@ -13,7 +13,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate, useParams } from 'react-router-dom';
 import UserUpdateForm from './forms/UserUpdateForm';
 import DeleteConfirmationModal from './modals/DeleteConfirmationModal';
-import { useTheme } from '@full-stack-challenge/shared-theme';
 import {
   readSingleUser,
   deleteUserByID,
@@ -32,7 +31,6 @@ const UserCard: React.FC = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { id } = useParams();
-  const { mode } = useTheme();
 
   const getUser = async () => {
     if (id) {

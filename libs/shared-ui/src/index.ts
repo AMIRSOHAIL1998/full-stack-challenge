@@ -6,3 +6,5 @@ export * from './lib/layout/Header';
 export * from './lib/layout/Footer';
 export * from './lib/layout/AuthDashboard';
 export * from './lib/layout/AdminAppAuthDashboardLayout';
+export * from './lib/layout/client/ClientDashboard';
+export * from './lib/layout/client/ClientAuthDashboard';

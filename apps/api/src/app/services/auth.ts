@@ -3,10 +3,12 @@ import db from '../../database/connection';
 import jwt from 'jsonwebtoken';
 import { generateUniqueId } from '../helper/generateUniqueId';
 
-export const login = async (email: string, password: string) => {
+export const login = async (email: string, password: string, type: string) => {
   const user = await db('users').where({ email }).first();
   if (!user) throw new Error('User not found');
-
+  if (user?.type !== type) {
+    throw new Error('Please check your login credentials.');
+  }
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) throw new Error('Invalid credentials');
 
@@ -44,7 +46,7 @@ export const signup = async (request: any) => {
 
   // Generate a JWT token for the new user
   const token = jwt.sign(
-    { userId: user.id, name: user.name, email: user.email, type: user.type },
+    { user_id: user.id, name: user.name, email: user.email, type: user.type },
     'your-jwt-secret', // this this should come from .env
     {
       expiresIn: '1h',

@@ -3,8 +3,9 @@ import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import LogoDevIcon from '@mui/icons-material/LogoDev';
 // Import Button from shared-ui
 import { Button } from '@full-stack-challenge/shared-ui';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '@full-stack-challenge/shared-theme';
 
 interface HeaderProps {
   appName: string;
@@ -13,11 +14,15 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ appName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { mode } = useTheme();
+
+  const { id } = useSelector((state: any) => state?.auth);
 
   const handleLogoutAndRedirect = async () => {
     dispatch({ type: 'LOGOUT' });
     navigate('/auth');
   };
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -34,7 +39,15 @@ const Header: React.FC<HeaderProps> = ({ appName }) => {
         </Typography>
 
         {/* Logout Button positioned at the right */}
-        <Button label={'Logout'} onClick={handleLogoutAndRedirect} />
+        {id && (
+          <Button
+            label={'Logout'}
+            onClick={handleLogoutAndRedirect}
+            style={{
+              backgroundColor: mode === 'light' ? '#ffffff' : '#1c1c1c',
+            }}
+          />
+        )}
       </Toolbar>
     </AppBar>
   );

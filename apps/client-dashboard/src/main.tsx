@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom/client';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { webStore, webPersistor } from '@full-stack-challenge/store';
-import { ThemeProvider, darkTheme } from '@full-stack-challenge/shared-theme';
+import { ThemeProvider } from '@full-stack-challenge/shared-theme';
 import App from './app/app';
 
 const root = ReactDOM.createRoot(
@@ -16,7 +16,7 @@ root.render(
     <BrowserRouter>
       <Provider store={webStore}>
         <PersistGate loading={null} persistor={webPersistor}>
-          <ThemeProvider defaultMode="dark">
+          <ThemeProvider defaultMode="light">
             <App />
           </ThemeProvider>
         </PersistGate>

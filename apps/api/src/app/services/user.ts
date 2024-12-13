@@ -55,7 +55,7 @@ export const readUserById = async (id: string) => {
 // Function to update a user by ID
 export const updateUserData = async (
   id: string,
-  updatedData: { name: string; email: string }
+  updatedData: { name: string; email: string; type: string }
 ) => {
   try {
     const updatedUser = await db('users')
@@ -63,6 +63,7 @@ export const updateUserData = async (
       .update({
         name: updatedData.name,
         email: updatedData.email,
+        type: updatedData.type || 'user',
         updated_at: db.fn.now(),
       })
       .returning(['id', 'name', 'email', 'type', 'created_at', 'updated_at']);

@@ -1,14 +1,8 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import Sidebar from './Sidebar';
 import { useTheme } from '@full-stack-challenge/shared-theme';
-import UserTable from '../components/Table';
 import { Routes, Route } from 'react-router-dom';
-import UserCard from '../components/UserCard';
-import AdminCard from '../components/AdminCard';
-import AnalyticsCard from '../components/AnalyticsCard';
 import { LoginForm } from '../components/forms/LoginForm';
-import { SignupForm } from '../components/forms/SignUpForm';
 
 const AdminAppAuthDashboardLayout: React.FC = ({}) => {
   const { mode } = useTheme();
@@ -25,7 +19,7 @@ const AdminAppAuthDashboardLayout: React.FC = ({}) => {
         }}
       >
         <Routes>
-          <Route path="/" element={<LoginForm />} />
+          <Route path="/" element={<LoginForm flag={'admin'} />} />
         </Routes>
       </Box>
     </Box>

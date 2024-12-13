@@ -1,23 +1,22 @@
 import './app.module.css';
-import NxWelcome from './nx-welcome';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useTheme } from '@full-stack-challenge/shared-theme';
-import { Button, LoginForm } from '@full-stack-challenge/shared-ui';
+
+import {
+  ClientAuthDashboard,
+  ClientDashboard,
+} from '@full-stack-challenge/shared-ui';
+import { Routes, Route } from 'react-router-dom';
 
 const queryClient = new QueryClient();
 
 export function App() {
-  const { toggleTheme } = useTheme();
   return (
     <QueryClientProvider client={queryClient}>
       <div>
-        <LoginForm />
-        {/* <SignupForm /> */}
-        <Button
-          label="Toggle Theme"
-          onClick={toggleTheme}
-          variant="contained"
-        />
+        <Routes>
+          <Route path="/auth/*" element={<ClientAuthDashboard />} />
+          <Route path="/*" element={<ClientDashboard />} />
+        </Routes>
       </div>
     </QueryClientProvider>
   );

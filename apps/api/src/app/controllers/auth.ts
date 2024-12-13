@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { login, signup } from '../services/auth';
-import { validateSignup } from '../helper/userSchemaValidation';
+import { validateSignup, validateLogin } from '../helper/userSchemaValidation';
 
 export const loginUser = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, type } = req.body;
     console.log('email :', email);
 
-    const token = await login(email, password);
+    const token = await login(email, password, type);
     res.status(200).json({ token });
   } catch (error) {
     res.status(400).json({ message: 'Invalid credentials', error });

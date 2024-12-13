@@ -48,9 +48,9 @@ export const getUserById = async (req: Request, res: Response) => {
 // Function to update a user by ID
 export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { name, email } = req.body;
+  const { name, email, type } = req.body;
   try {
-    const updatedUser = await updateUserData(id, { name, email });
+    const updatedUser = await updateUserData(id, { name, email, type });
     if (!updatedUser) {
       return res.status(404).json({ message: 'User not found' });
     }

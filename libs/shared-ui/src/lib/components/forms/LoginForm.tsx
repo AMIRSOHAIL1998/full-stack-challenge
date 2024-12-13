@@ -4,16 +4,15 @@ import { TextField, Grid } from '@mui/material';
 import { Container, Typography } from '@mui/material';
 import { Button } from '../buttons/Button';
 import { authorizeUser, userLogin } from '@full-stack-challenge/services';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUserAuth } from '@full-stack-challenge/store';
-import { log } from 'console';
-// Type definition for the form data
 interface LoginFormData {
   email: string;
   password: string;
+  type: string;
 }
 
-export const LoginForm: React.FC = () => {
+export const LoginForm: React.FC<{ flag: string }> = ({ flag }) => {
   const {
     control,
     handleSubmit,
@@ -27,7 +26,10 @@ export const LoginForm: React.FC = () => {
 
   const dispatch = useDispatch();
 
+  console.log('flag', flag);
+
   const onSubmit = async (data: LoginFormData) => {
+    data.type = flag === 'client' ? 'user' : 'admin';
     const response = await userLogin(data);
     const payload = { token: response.token };
     const authResult = await authorizeUser(payload);
@@ -125,6 +127,24 @@ export const LoginForm: React.FC = () => {
               Log In
             </Button>
           </Grid>
+          {/* Signup Button */}
+          {flag === 'client' && (
+            <Grid item xs={12}>
+              <Typography
+                variant="body2"
+                align="center"
+                style={{ marginTop: '10px' }}
+              >
+                Don't have an account?{' '}
+                <a
+                  href="/auth/signup"
+                  style={{ color: '#1976d2', textDecoration: 'none' }}
+                >
+                  Sign up here
+                </a>
+              </Typography>
+            </Grid>
+          )}
         </Grid>
       </form>
     </Container>
