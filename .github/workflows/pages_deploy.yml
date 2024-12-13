@@ -5,32 +5,35 @@ on:
     branches:
       - main
 
+env:
+  NODE_OPTIONS: --max-old-space-size=4096 # Increase memory allocation
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-
-    env:
-      NODE_OPTIONS: --max-old-space-size=4096 # Allocate more memory for Node.js
+    runs-on: ubuntu-22.04 # Use the latest Ubuntu runner with more resources
 
     steps:
       # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Cache clean
-      - name: Clear Yarn Cache
-        run: yarn cache clean
-
-      # Step 3: Set up Node.js
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Use the latest LTS version of Node.js
+          node-version: '18' # Use LTS version for stability
           cache: 'yarn'
 
-      # Step 4: Install dependencies using Yarn
+      # Step 3: Clear Yarn cache
+      - name: Clear Yarn Cache
+        run: yarn cache clean
+
+      # Step 4: Install dependencies
       - name: Install dependencies
-        run: yarn install
+        run: |
+          yarn install --frozen-lockfile
+        env:
+          NX_VERBOSE_LOGGING: true # Enable detailed Nx logs for debugging
 
       # Step 5: Build admin-dashboard
       - name: Build admin-dashboard
