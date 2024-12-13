@@ -12,11 +12,11 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/database/knexfile.js",
+    "src/database/knexfile.ts",
     "src/app/helper/generateUniqueId.ts",
     "src/app/helper/userSchemaValidation.ts",
-    "src/database/connection.js",
+    "src/database/connection.ts",
     "src/database/seeds/users.js",
-    "src/database/migrations/*.js" // Include migration files
+    "src/database/migrations/*.ts"
   ]
 }

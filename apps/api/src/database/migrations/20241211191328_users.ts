@@ -1,5 +1,7 @@
-exports.up = function (knex) {
-  return knex.schema.createTable('users', function (table) {
+import { Knex } from 'knex';
+
+export const up = async (knex: Knex): Promise<void> => {
+  await knex.schema.createTable('users', (table) => {
     table.string('id').notNullable().primary();
     table.string('email').notNullable();
     table.string('name').notNullable();
@@ -11,6 +13,6 @@ exports.up = function (knex) {
   });
 };
 
-exports.down = function (knex) {
-  return knex.schema.dropTable('users');
+export const down = async (knex: Knex): Promise<void> => {
+  await knex.schema.dropTable('users');
 };
