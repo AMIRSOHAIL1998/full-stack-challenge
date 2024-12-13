@@ -5,7 +5,9 @@
     "esModuleInterop": true,
     "declaration": true,
     "composite": true,
-    "allowJs": true
+    "allowJs": true,
+    "target": "ES2020",
+    "module": "CommonJS"
   },
   "include": [
     "src/**/*.ts",
@@ -15,6 +17,6 @@
     "src/app/helper/userSchemaValidation.ts",
     "src/database/connection.js",
     "src/database/seeds/users.js",
-    "src/database/migrations"
+    "src/database/migrations/*.js" // Include migration files
   ]
 }
