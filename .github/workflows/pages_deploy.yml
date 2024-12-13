@@ -6,11 +6,11 @@ on:
       - main
 
 env:
-  NODE_OPTIONS: --max-old-space-size=4096 # Increase memory allocation
+  NODE_OPTIONS: --max-old-space-size=8192 # Allocate more memory to Node.js
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04 # Use the latest Ubuntu runner with more resources
+    runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the repository
@@ -24,16 +24,17 @@ jobs:
           node-version: '18' # Use LTS version for stability
           cache: 'yarn'
 
-      # Step 3: Clear Yarn cache
+      # Step 3: Clear Yarn Cache
       - name: Clear Yarn Cache
         run: yarn cache clean
 
-      # Step 4: Install dependencies
-      - name: Install dependencies
+      # Step 4: Rebuild Node Modules
+      - name: Remove and Reinstall Node Modules
         run: |
+          rm -rf node_modules
           yarn install --frozen-lockfile
         env:
-          NX_VERBOSE_LOGGING: true # Enable detailed Nx logs for debugging
+          NX_VERBOSE_LOGGING: true
 
       # Step 5: Build admin-dashboard
       - name: Build admin-dashboard
