@@ -2,12 +2,12 @@ import db from '../../database/connection';
 
 export const readUsersAnalyticsData = async () => {
   // Example query to fetch user data (change this to fit your DB schema)
-  const totalUser = await db('users').count('* as users');
-  const adminCount = await db('users')
+  const totalUser: any = await db('users').count('* as users');
+  const adminCount: any = await db('users')
     .where('type', 'admin')
     .count('* as admins');
 
-  const userCount = Number(totalUser[0]?.users - adminCount[0]?.admins);
+  const userCount: number = Number(totalUser[0]?.users - adminCount[0]?.admins);
 
   return {
     total: totalUser[0]?.users,
