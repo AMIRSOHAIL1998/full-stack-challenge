@@ -5,7 +5,7 @@
   "scripts": {
     "build:admin": "nx build admin-dashboard",
     "build:client": "nx build client-dashboard",
-    "build:api": "nx build api",
+    "build:api": "tsc -p apps/api/tsconfig.app.json",
     "build:all": "nx run-many --target=build --projects=admin-dashboard,client-dashboard,api",
     "serve:admin": "nx serve admin-dashboard",
     "serve:client": "nx serve client-dashboard",
