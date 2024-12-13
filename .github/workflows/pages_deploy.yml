@@ -17,37 +17,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
+      # Step 2: Cache clean
+      - name: Clear Yarn Cache
+        run: yarn cache clean
+
+      # Step 3: Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18' # Use the latest LTS version of Node.js
           cache: 'yarn'
 
-      # Step 3: Install dependencies using Yarn
+      # Step 4: Install dependencies using Yarn
       - name: Install dependencies
         run: yarn install
 
-      # Step 4: Build admin-dashboard
+      # Step 5: Build admin-dashboard
       - name: Build admin-dashboard
         run: yarn nx build admin-dashboard --prod
 
-      # Step 5: Build client-dashboard
+      # Step 6: Build client-dashboard
       - name: Build client-dashboard
         run: yarn nx build client-dashboard --prod
 
-      # Step 6: Deploy admin-dashboard
+      # Step 7: Deploy admin-dashboard
       - name: Deploy admin-dashboard
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/apps/admin-dashboard
-          cname: admin.example.com # Add a custom domain if applicable
 
-      # Step 7: Deploy client-dashboard
+      # Step 8: Deploy client-dashboard
       - name: Deploy client-dashboard
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/apps/client-dashboard
-          cname: client.example.com # Add a custom domain if applicable
