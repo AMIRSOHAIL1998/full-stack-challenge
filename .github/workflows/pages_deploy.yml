@@ -1,0 +1,48 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21'
+          cache: 'yarn'
+
+      # Step 3: Install dependencies using Yarn
+      - name: Install dependencies
+        run: yarn install
+
+      # Step 4: Build admin-dashboard
+      - name: Build admin-dashboard
+        run: yarn build:admin
+
+      # Step 5: Build client-dashboard
+      - name: Build client-dashboard
+        run: yarn build:client
+
+      # Step 6: Deploy admin-dashboard
+      - name: Deploy admin-dashboard
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/apps/admin-dashboard
+
+      # Step 7: Deploy client-dashboard
+      - name: Deploy client-dashboard
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/apps/client-dashboard
