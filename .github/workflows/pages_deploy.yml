@@ -9,6 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      NODE_OPTIONS: --max-old-space-size=4096 # Allocate more memory for Node.js
+
     steps:
       # Step 1: Checkout the repository
       - name: Checkout code
@@ -18,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '21'
+          node-version: '18' # Use the latest LTS version of Node.js
           cache: 'yarn'
 
       # Step 3: Install dependencies using Yarn
@@ -27,11 +30,11 @@ jobs:
 
       # Step 4: Build admin-dashboard
       - name: Build admin-dashboard
-        run: yarn build:admin
+        run: yarn nx build admin-dashboard --prod
 
       # Step 5: Build client-dashboard
       - name: Build client-dashboard
-        run: yarn build:client
+        run: yarn nx build client-dashboard --prod
 
       # Step 6: Deploy admin-dashboard
       - name: Deploy admin-dashboard
@@ -39,6 +42,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/apps/admin-dashboard
+          cname: admin.example.com # Add a custom domain if applicable
 
       # Step 7: Deploy client-dashboard
       - name: Deploy client-dashboard
@@ -46,3 +50,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/apps/client-dashboard
+          cname: client.example.com # Add a custom domain if applicable
