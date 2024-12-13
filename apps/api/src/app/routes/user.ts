@@ -1,9 +1,18 @@
 import { Router } from 'express';
-import { getUserAnalytics, getUsers } from '../controllers/user';
+import {
+  deleteUser,
+  getUserAnalytics,
+  getUserById,
+  getUsers,
+  updateUser,
+} from '../controllers/user';
 
 const router: any = Router();
 
 router.get('/statistics', getUserAnalytics);
 router.get('/read', getUsers);
+router.get('/read/:id', getUserById);
+router.post('/update/:id', updateUser);
+router.post('/delete/:id', deleteUser);
 
 export default router;

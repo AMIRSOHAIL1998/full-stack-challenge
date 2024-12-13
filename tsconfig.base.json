@@ -17,6 +17,7 @@
     "paths": {
       "@app/*": ["apps/*/src"],
       "@full-stack-challenge/db-conn": ["libs/db-conn/src/index.ts"],
+      "@full-stack-challenge/services": ["libs/services/src/index.ts"],
       "@full-stack-challenge/shared-theme": ["libs/shared-theme/src/index.ts"],
       "@full-stack-challenge/shared-ui": ["libs/shared-ui/src/index.ts"],
       "@full-stack-challenge/store": ["libs/store/src/index.ts"],

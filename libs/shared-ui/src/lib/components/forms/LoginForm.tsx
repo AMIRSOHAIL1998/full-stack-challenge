@@ -1,17 +1,19 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Button, TextField, Grid } from '@mui/material';
+import { TextField, Grid } from '@mui/material';
 import { Container, Typography } from '@mui/material';
-
+import { Button } from '../buttons/Button';
+import { authorizeUser, userLogin } from '@full-stack-challenge/services';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserAuth } from '@full-stack-challenge/store';
+import { log } from 'console';
 // Type definition for the form data
 interface LoginFormData {
   email: string;
   password: string;
 }
 
-export const LoginForm: React.FC<{
-  onSubmit: (data: LoginFormData) => void;
-}> = ({ onSubmit }) => {
+export const LoginForm: React.FC = () => {
   const {
     control,
     handleSubmit,
@@ -22,6 +24,27 @@ export const LoginForm: React.FC<{
       password: '',
     },
   });
+
+  const dispatch = useDispatch();
+
+  const onSubmit = async (data: LoginFormData) => {
+    const response = await userLogin(data);
+    const payload = { token: response.token };
+    const authResult = await authorizeUser(payload);
+
+    if (authResult?.user) {
+      dispatch(
+        setUserAuth({
+          id: authResult?.user?.user_id,
+          name: authResult?.user?.name,
+          email: authResult?.user?.email,
+          type: authResult?.user?.type,
+          isAuthenticated: true,
+          token: response?.token,
+        })
+      );
+    }
+  };
 
   return (
     <Container
@@ -92,7 +115,13 @@ export const LoginForm: React.FC<{
 
           {/* Submit Button */}
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              label="Login"
+            >
               Log In
             </Button>
           </Grid>

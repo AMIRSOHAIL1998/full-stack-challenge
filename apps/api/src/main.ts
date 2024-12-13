@@ -1,23 +1,17 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
-import { log } from 'console';
+import cors from 'cors';
 import express from 'express';
-import * as path from 'path';
 import authRoutes from './app/routes/auth';
 import userRoutes from './app/routes/user';
 import { authMiddleware } from './app/middlewares/authMiddleware';
-const app = express();
 
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to api!' });
 });
 
-app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/users', authMiddleware, userRoutes);
 
