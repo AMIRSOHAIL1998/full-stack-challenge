@@ -11,6 +11,7 @@
     "serve:client": "nx serve client-dashboard",
     "serve:api": "nx serve api",
     "serve:all": "nx run-many --target=serve --projects=admin-dashboard,client-dashboard,api",
+    "start": "node apps/api/dist/main.js",
     "migrate:make": "npx knex migrate:make --knexfile=apps/api/src/database/knexfile.js",
     "migrate:latest": "npx knex migrate:latest --knexfile=apps/api/src/database/knexfile.js",
     "migrate:rollback": "npx knex migrate:rollback --knexfile=apps/api/src/database/knexfile.js",
