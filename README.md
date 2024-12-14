@@ -6,6 +6,24 @@ This project consists of three applications:
 2. **Admin Dashboard** - Admin-facing dashboard.
 3. **Client Dashboard** - Client-facing dashboard.
 
+## Hosted URLs
+
+- Backend : https://full-stack-challenge-3.onrender.com/
+- Admin App : https://admin-epic.onrender.com/auth
+- Client App : https://client-epic.onrender.com
+
+## Login credentials
+
+**Admin App**
+
+- Email : amir@betalectic.com
+- password: Amir@123
+
+**Client App**
+
+- Email : mdamirsohail1@gmail.com
+- password : Amir@123
+
 ## Getting Started
 
 ### Clone the Repository
@@ -40,13 +58,13 @@ yarn migrate:latest
 **Note:** Before running the backend API, make sure to build it first:
 
 ```bash
-yarn build:api
+yarn build
 ```
 
 Then, start the backend server:
 
 ```bash
-yarn serve:api
+yarn dev
 ```
 
 ### Start Admin Dashboard
