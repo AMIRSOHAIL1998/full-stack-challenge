@@ -9,8 +9,8 @@ This project consists of three applications:
 ## Hosted URLs
 
 - Backend : https://full-stack-challenge-3.onrender.com/
-- Admin App : https://admin-epic.onrender.com/auth
-- Client App : https://client-epic.onrender.com
+- Admin App : https://admin-epic.pages.dev/
+- Client App : https://client-epic.pages.dev/
 
 ## Login credentials
 
