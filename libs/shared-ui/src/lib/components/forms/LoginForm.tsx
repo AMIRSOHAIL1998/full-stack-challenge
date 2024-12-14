@@ -23,6 +23,7 @@ export const LoginForm: React.FC<{ flag: string }> = ({ flag }) => {
       password: '',
     },
   });
+
   const dispatch = useDispatch();
 
   console.log('flag', flag);
@@ -136,8 +137,8 @@ export const LoginForm: React.FC<{ flag: string }> = ({ flag }) => {
               >
                 Don't have an account?{' '}
                 <a
+                  href="/auth/signup"
                   style={{ color: '#1976d2', textDecoration: 'none' }}
-                  onClick={() => (window.location.href = '/auth/signup')}
                 >
                   Sign up here
                 </a>
