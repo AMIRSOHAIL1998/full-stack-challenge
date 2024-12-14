@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nx build api",
     "dev": "nx serve api --watch",
+    "preview:client": "nx preview client-dashboard",
     "build:admin": "nx build admin-dashboard",
     "build:client": "nx build client-dashboard",
     "build:api": "tsc -p apps/api/tsconfig.app.json",
