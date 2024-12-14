@@ -5,6 +5,24 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "tsConfig": "apps/api/tsconfig.app.json",
+        "main": "apps/api/src/main.ts",
+        "outputPath": "apps/api/dist"
+      },
+      "configurations": {
+        "development": {
+          "tsConfig": "apps/api/tsconfig.app.json",
+          "outputPath": "apps/api/dist"
+        },
+        "production": {
+          "tsConfig": "apps/api/tsconfig.app.json",
+          "outputPath": "apps/api/dist"
+        }
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
