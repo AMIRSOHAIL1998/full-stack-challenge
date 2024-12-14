@@ -8,10 +8,11 @@ import { userSignup, authorizeUser } from '@full-stack-challenge/services';
 import { useDispatch } from 'react-redux';
 import { setUserAuth } from '@full-stack-challenge/store';
 
-const ClientAuthDashboardLayout: React.FC = ({}) => {
+const ClientAuthDashboardLayout: React.FC = () => {
   const { mode } = useTheme();
   const dispatch = useDispatch();
 
+  // Handle user signup and authentication
   const handleAddUser = async (data: any) => {
     delete data?.confirmPassword;
     const newUser = { ...data, type: 'user' };
