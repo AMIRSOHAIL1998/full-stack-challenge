@@ -27,7 +27,7 @@ yarn install
 
 ### Run Database Migrations
 
-Run the database migrations to set up the database:
+Run the database migrations to set up the database: run after `yarn build:api` command
 
 ```bash
 yarn migrate:latest
@@ -37,7 +37,13 @@ yarn migrate:latest
 
 ### Start Backend API
 
-To start the backend API, run:
+**Note:** Before running the backend API, make sure to build it first:
+
+```bash
+yarn build:api
+```
+
+Then, start the backend server:
 
 ```bash
 yarn serve:api
