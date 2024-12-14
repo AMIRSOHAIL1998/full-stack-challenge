@@ -1,83 +1,140 @@
-# FullStackChallenge
+# Project Overview
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+This project consists of three applications:
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+1. **API** - Backend service.
+2. **Admin Dashboard** - Admin-facing dashboard.
+3. **Client Dashboard** - Client-facing dashboard.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Getting Started
 
-## Finish your CI setup
+### Clone the Repository
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/Dbz6d1eg23)
+To get started, clone the repository to your local machine:
 
-
-## Run tasks
-
-To run the dev server for your app, use:
-
-```sh
-npx nx serve admin-dashboard
+```bash
+git clone <repository-url>
+cd <repository-folder>
 ```
 
-To create a production bundle:
+### Install Dependencies
 
-```sh
-npx nx build admin-dashboard
+Install all dependencies using Yarn:
+
+```bash
+yarn install
 ```
 
-To see all available targets to run for a project, run:
+### Run Database Migrations
 
-```sh
-npx nx show project admin-dashboard
+Run the database migrations to set up the database:
+
+```bash
+yarn migrate:latest
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## Running Applications
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Start Backend API
 
-## Add new projects
+To start the backend API, run:
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
+```bash
+yarn serve:api
 ```
 
-To generate a new library, use:
+### Start Admin Dashboard
 
-```sh
-npx nx g @nx/react:lib mylib
+To start the admin dashboard, run:
+
+```bash
+yarn serve:admin
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+### Start Client Dashboard
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+To start the client dashboard, run:
 
+```bash
+yarn serve:client
+```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Building Applications
 
-## Install Nx Console
+### Build Backend API
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+To build the backend API, run:
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```bash
+yarn build:api
+```
 
-## Useful links
+### Build Admin Dashboard
 
-Learn more:
+To build the admin dashboard, run:
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```bash
+yarn build:admin
+```
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-# full-stack-challenge
+### Build Client Dashboard
+
+To build the client dashboard, run:
+
+```bash
+yarn build:client
+```
+
+## API Endpoints
+
+### Authentication Endpoints
+
+- **Sign Up:** `POST /auth/signup`
+- **Login:** `POST /auth/login`
+- **Authorize and Get User Details:** `GET /auth/authorize`
+
+### User Endpoints
+
+- **Read All Users:** `GET /users/read`
+- **Read Specific User by ID:** `GET /users/read/:id`
+- **Update User by ID:** `PUT /users/update/:id`
+- **Delete User by ID:** `DELETE /users/delete/:id`
+- **Get User Analytics:** `GET /users/statistics`
+
+## User Management
+
+### Create an Admin User
+
+To create an admin user, use Postman or any other API testing tool. Make a `POST` request to the following endpoint:
+
+```
+/auth/signup
+```
+
+#### Payload Example
+
+```json
+{
+  "email": "amir5@gmail.com",
+  "name": "Amir 5",
+  "type": "Admin",
+  "password": "Amir@123"
+}
+```
+
+### Login to Admin Dashboard
+
+Once the admin user is created, use the credentials to log in to the admin dashboard.
+
+### Sign Up and Login to Client Dashboard
+
+1. Start the client app by running:
+   ```bash
+   yarn serve:client
+   ```
+2. Sign up using the client app's sign-up page.
+3. Use the created credentials to log in to the client dashboard in the future.
+
+---
+
+Feel free to customize this README file as per your project's requirements!
