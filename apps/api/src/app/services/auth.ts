@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 import { generateUniqueId } from '../helper/generateUniqueId';
 
 export const login = async (email: string, password: string, type: string) => {
+  email = email.toLowerCase();
+  type = type.toLowerCase();
   const user = await db('users').where({ email }).first();
   if (!user) throw new Error('User not found');
   if (user?.type !== type) {
@@ -28,11 +30,15 @@ export const login = async (email: string, password: string, type: string) => {
 };
 
 export const signup = async (request: any) => {
-  const { name, email, password, type } = request.body;
+  let { name, email, password, type } = request.body;
   const existingUser = await db('users').where({ email }).first();
   if (existingUser) throw new Error('User already exists');
+  type = type.toLowerCase();
+  email = email.toLowerCase();
 
   const hashedPassword = await bcrypt.hash(password, 10);
+
+  console.log('type', type);
 
   const [user] = await db('users')
     .insert({

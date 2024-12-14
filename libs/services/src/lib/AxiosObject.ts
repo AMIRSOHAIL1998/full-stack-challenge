@@ -4,7 +4,9 @@ import { webStore, clearState } from '@full-stack-challenge/store';
 
 const AxiosObject: AxiosInstance = axios.create();
 
-AxiosObject.defaults.baseURL = 'http://localhost:3333';
+// Uncomment below line in development
+// AxiosObject.defaults.baseURL = import.meta.env.VITE_API_URL;
+AxiosObject.defaults.baseURL = process.env.VITE_API_URL;
 
 AxiosObject.defaults.headers.common = {
   'Content-Type': 'application/json',

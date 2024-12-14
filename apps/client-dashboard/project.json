@@ -8,13 +8,29 @@
         "build": {
           "executor": "@nrwl/react:build",
           "options": {
-            "outputPath": "dist/apps/client-dashboard"
+            "outputPath": "dist/apps/client-dashboard",
+            "viteConfig": "apps/client-dashboard/vite.config.ts"
           }
         },
         "serve": {
           "executor": "@nrwl/react:dev-server",
           "options": {
-            "buildTarget": "client-dashboard:build"
+            "buildTarget": "client-dashboard:build",
+            "port": 4200,
+            "host": "localhost"
+          }
+        },
+        "preview": {
+          "executor": "@nrwl/node:exec",
+          "options": {
+            "command": "serve",
+            "args": [
+              "dist/apps/client-dashboard",
+              "--port",
+              "4300",
+              "--host",
+              "localhost"
+            ]
           }
         }
       }
