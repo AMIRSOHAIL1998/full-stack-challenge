@@ -6,7 +6,7 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 export default defineConfig({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/client-dashboard',
-  base: './', // Ensure assets are loaded relatively
+  base: './',
   server: {
     port: 4200,
     host: 'localhost',
@@ -23,5 +23,9 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+  },
+  define: {
+    // Explicitly define environment variables (if needed)
+    'process.env': process.env,
   },
 });

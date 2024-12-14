@@ -4,7 +4,7 @@ import { webStore, clearState } from '@full-stack-challenge/store';
 
 const AxiosObject: AxiosInstance = axios.create();
 
-AxiosObject.defaults.baseURL = 'https://full-stack-challenge-3.onrender.com';
+AxiosObject.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 AxiosObject.defaults.headers.common = {
   'Content-Type': 'application/json',
